@@ -1,10 +1,9 @@
-package service;
+package Repository;
 
-import data.CSVReader;
-import data.JsonReader;
 import data.Task;
-import data.XmlReader;
+import org.json.simple.parser.ParseException;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ReaderService {
@@ -13,39 +12,40 @@ public class ReaderService {
 
         if (format.equals("json")) {
             new JsonReader().writeData(listTasks);
+            return;
 
         }
         if (format.equals("csv")) {
             new CSVReader().writeData(listTasks);
-
+            return;
         }
 
 
         if (format.equals("xml")) {
             new XmlReader().writeData(listTasks);
-
+            return;
         }
 
         else {
           throw new IllegalStateException("Format not found!");
-        };
+        }
 
     }
 
-    public void readData(List<Task> listTasks, String format){
+    public void readData(String format)  {
 
         if (format.equals("json")) {
-            new JsonReader().readData(listTasks);
+            new JsonReader().readData();
 
         }
         if (format.equals("csv")) {
-            new CSVReader().readData(listTasks);
+            new CSVReader().readData();
 
         }
 
 
         if (format.equals("xml")) {
-            new XmlReader().readData(listTasks);
+            new XmlReader().readData();
 
         }
 
